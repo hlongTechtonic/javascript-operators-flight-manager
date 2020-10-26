@@ -7,7 +7,7 @@ function Flights() {
             if(!Number.isInteger(numPass) || numPass <= 0) {
 
                 throw new Error("The number of passengers must be a positive integer value");
-            
+                
             }
 
             if(!Number.isInteger(cap) || cap <= 0) {
@@ -30,10 +30,29 @@ function Flights() {
         
     }
 
-    return {calculateNumberOfFlights};
+    function checkAircraftRevision(distLimit, distArr) {
+        let sum = 0;
+
+        distArr.forEach(element => {
+            sum += element;
+        });
+
+        if(sum <= (distLimit / 2)) {
+            return "The revision needs to be done within the next 3 months";
+        } else if(sum > (distLimit / 2) && sum <= (distLimit * .75)) {
+            return "The revision needs to be done within the next 2 months";
+        } else if (sum > (distLimit * .75) && sum <= distLimit) {
+            return "The revision needs to be done within the next month";
+        } else if (sum > distLimit) {
+            throw new Error();
+        }
+    }
+
+    return {calculateNumberOfFlights, checkAircraftRevision};
 }
 
 module.exports = Flights();
+
 
 
 
