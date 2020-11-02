@@ -52,11 +52,23 @@ function Util() {
         return totalDist;
     }
 
-    function CalculateBonusPoints(busTravelArr, econTravelArr, busBonus, econBonus) {
+    function calculateBonusPoints(busTravelArr, econTravelArr, busBonus, econBonus) {
+
+        let totalBusBonus;
+        let totalEconBonus;
+        let totalPoints;
+
+        totalBusBonus = calculateTotalDistance(busTravelArr) * (busBonus / 100);
+
+        totalEconBonus = calculateTotalDistance(econTravelArr) * (econBonus / 100);
         
+        totalPoints = totalBusBonus + totalEconBonus;
+
+        return totalPoints;
+
     }
 
-    return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers, checkInput, calculateTotalDistance};
+    return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers, checkInput, calculateTotalDistance, calculateBonusPoints};
 
 }
 
